@@ -3,58 +3,45 @@
 	05 July 2017
 	Binary Tree data implementation 	
 =end
+method BinaryTree
+	class Node
+		attr_reader :value
+		attr_accessor :less, :greater
 
-class Node
-	attr_accessor :less, :greater
+		def initialize(value, left=nil, right=nil)
+			@value = value
+		end
 
-	def initialize(value, less=nil, greater=nil)
-		@value = value
-		@less = less
-		@greater = greater
-	end
-end
-
-class BinaryTree
-	def initialize(value)
-		@root = Node.new(value)
-	end
-
-	def add(value)
-		cur = @root
-		if node.value < cur.value
-			if(cur.left != nil)
-				cur.left = Node.new(value)
-			else
-				cur.left.add(value)
+		def insert(v)
+			case v <=> value
+			when 1 then insert_left(v)
+			when -1 then insert_right(v)
+			when 0 then false
 			end
 		end
-		else if node.value > cur.value
-			if(cur.right != nil)
-				cur.right = Node.new(value)
-			else
-				cur.right.add(value)
+
+		def inspect
+			cur = @root
+			if cur.left != nil
+				cur.left.returnTree
+			end
+			puts cur.value
+			if cur.right != nil
+				cur.right.returnTree
 			end
 		end
-	end
 
-	def returnTree
-		cur = @root
-		if cur.left != nil
-			cur.left.returnTree
-		end
-		puts cur.value
-		if cur.right != nil
-			cur.right.returnTree
-		end
+		private
+
+		def 
 	end
 end
-
 def test
 	puts "Running tests..."
 	puts "Testing add method"
 
 	new_bt = BinaryTree.new(5)
-	new_bt.add(1)
+	new_bt.insert(1)
 	new_bt.returnTree
 
 end
